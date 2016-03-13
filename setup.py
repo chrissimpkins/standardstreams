@@ -30,7 +30,7 @@ def version_read():
 setup(
     name='standardstreams',
     version=version_read(),
-    description='',
+    description='Standard output, standard error, and standard input stream library',
     long_description=(docs_read('README.rst')),
     url='https://github.com/chrissimpkins/standardstreams',
     license='MIT license',
