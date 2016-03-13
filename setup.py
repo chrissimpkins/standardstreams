@@ -40,7 +40,7 @@ setup(
     packages=find_packages("lib"),
     package_dir={'': 'lib'},
     install_requires=[''],
-    keywords='',
+    keywords='shell,standard output,standard input,standard error,stream,streams,pipe',
     include_package_data=True,
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
