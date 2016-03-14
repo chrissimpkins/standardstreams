@@ -21,8 +21,12 @@ def test_stdout_ascii(capsys):
 
 
 def test_stdout_unicode(capsys):
-    stdout("カイダーディー")
+    if sys.version_info[0] == 2:
+        msg = u("カイダーディー")
+    else:
+        msg = "カイダーディー"
+    stdout(msg)
     out, err = capsys.readouterr()
-    assert out == "カイダーディー\n"
+    assert out == msg + "\n"
 
 
