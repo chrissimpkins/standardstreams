@@ -3,5 +3,6 @@ max-line-length: 120
 python-targets:
     - 2
     - 3
-ignore-patterns:
-    -.*__init__\.py
+ignore-paths:
+    -lib/standardstreams/__init__.py
+
