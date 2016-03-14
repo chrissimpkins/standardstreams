@@ -30,3 +30,15 @@ def test_stdout_unicode(capsys):
     assert out == msg + "\n"
 
 
+def test_stdout_ascii_reports_correct_statuscode(capsys):
+    with pytest.raises(SystemExit):
+        try:
+            stdout("This is a test message", statuscode=1)
+            out, err = capsys.readouterr()
+            assert out == "This is a test message\n"
+        except SystemExit as exit_code:
+            assert exit_code.__str__() == '1'  # tests the exit status code in the SystemExit exception
+            raise exit_code
+
+
+
