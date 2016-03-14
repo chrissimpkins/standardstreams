@@ -22,7 +22,7 @@ def test_stdout_ascii(capsys):
 
 def test_stdout_unicode(capsys):
     if sys.version_info[0] == 2:
-        msg = u("カイダーディー")
+        msg = u"カイダーディー"
     else:
         msg = "カイダーディー"
     stdout(msg)
