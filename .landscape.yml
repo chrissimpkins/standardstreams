@@ -4,5 +4,5 @@ python-targets:
     - 2
     - 3
 ignore-paths:
-    -lib/standardstreams/__init__.py
+    - lib/standardstreams/__init__.py
 
