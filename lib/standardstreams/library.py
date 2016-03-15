@@ -89,7 +89,8 @@ def stdin():
 
 
 def stdin_lines():
-    """A generator function that reads and returns all data in the standard input stream by each newline value.
+    """A generator function that reads and returns all data in the standard input stream delimited by newline
+    characters.
 
     :returns: Standard input stream data by newline
     """
@@ -97,17 +98,26 @@ def stdin_lines():
         yield line
 
 
+# def stdin_comma():
+#     pass
+
+# def stdin_json():
+#     pass
+
 # def stdin_is_piped():
 #     """Returns a boolean answer to the question 'Is the standard input being piped to the script from another
 #     application rather than being run interactively?'
 #
-#     :returns: boolean.  True = stadard input is piped from another program; False = standard input is not piped from
+#     :returns: boolean.  True = standard input is piped from another program; False = standard input is not piped from
 #     another program
 #     """
 #     if sys.stdin.isatty() is True:
 #         return False
 #     else:
 #         return True
+
+# def pipe():
+#     pass
 #
 #
 # def prompt(msg):
