@@ -9,7 +9,7 @@ from standardstreams import stdout
 
 # ////////////////////////////////////////////////
 #
-# Setup
+# Test Setup
 #
 # ////////////////////////////////////////////////
 
@@ -138,7 +138,7 @@ def test_stdout_begin_parameter_test_false_unicode(capsys):
             msg = u"カイダーディー"
         else:
             msg = "カイダーディー"
-        beg_str = 123 # define as an integer
+        beg_str = 123  # define as an integer
         stdout(msg, begin=beg_str)
         out, err = capsys.readouterr()
         assert out == beg_str + msg + '\n'

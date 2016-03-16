@@ -4,9 +4,9 @@
 import sys
 
 # Define basestring in Python version independent manner for string tests
-try:
+try:  # pragma: no cover
   basestring
-except NameError:
+except NameError:  # pragma: no cover
   basestring = str
 
 # TODO: stdout_json: std output formatted as json
