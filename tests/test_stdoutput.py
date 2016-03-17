@@ -104,7 +104,7 @@ def test_stdout_msg_parameter_test_object_str_repr(capsys):
     bogus = BogusWithBoth()
     stdout(bogus)
     out, err = capsys.readouterr()
-    assert out == "__str__ success\n"
+    assert out == "__str__ success\n"   # defaults to __str__ method when both defined in class
 
 
 def test_stdout_begin_parameter_test_true_ascii(capsys):
@@ -126,7 +126,7 @@ def test_stdout_begin_parameter_test_true_unicode(capsys):
         beg_str = u'ディー '
     else:
         msg = "カイダーディー"
-        beg_str = u'ディー '
+        beg_str = 'ディー '
     stdout(msg, begin=beg_str)
     out, err = capsys.readouterr()
     assert out == beg_str + msg + '\n'
@@ -142,6 +142,43 @@ def test_stdout_begin_parameter_test_false_unicode(capsys):
         stdout(msg, begin=beg_str)
         out, err = capsys.readouterr()
         assert out == beg_str + msg + '\n'
+
+
+def test_stdout_end_parameter_test_true_ascii(capsys):
+    stdout("This is a test message", end="...")
+    out, err = capsys.readouterr()
+    assert out == "This is a test message..."
+
+
+def test_stdout_end_parameter_test_false_ascii(capsys):
+    with pytest.raises(TypeError):
+        stdout("This is a test message", end=123)
+        out, err = capsys.readouterr()
+        assert out == "[test] This is a test message..."
+
+
+def test_stdout_end_parameter_test_true_unicode(capsys):
+    if sys.version_info[0] == 2:
+        msg = u"カイダーディー"
+        end_str = u'ディー'
+    else:
+        msg = "カイダーディー"
+        end_str = 'ディー'
+    stdout(msg, end=end_str)
+    out, err = capsys.readouterr()
+    assert out == msg + end_str
+
+
+def test_stdout_end_parameter_test_false_unicode(capsys):
+    with pytest.raises(TypeError):
+        if sys.version_info[0] == 2:
+            msg = u"カイダーディー"
+        else:
+            msg = "カイダーディー"
+        end_str = 123  # define as an integer
+        stdout(msg, end=end_str)
+        out, err = capsys.readouterr()
+        assert out == msg + end_str
 
 
 # ////////////////////////////////////////////////

@@ -109,7 +109,7 @@ def stdin_lines():
     """A generator function that reads and returns all data in the standard input stream delimited by newline
     characters.
 
-    :returns: Standard input stream data by newline
+    :returns: Standard input stream lines delimited by newline characters
     """
     for line in sys.stdin.readlines():
         yield line
