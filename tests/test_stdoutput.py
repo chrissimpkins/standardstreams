@@ -236,7 +236,10 @@ def test_stdout_unicode_begin_parameter(capsys):
         msg = u"カイダーディー"
     else:
         msg = "カイダーディー"
-    stdout(msg, begin="[ディー] ")
+    if sys.version_info[0] == 2:
+        stdout(msg, begin=u"[ディー] ")
+    else:
+        stdout(msg, begin="[ディー] ")
     out, err = capsys.readouterr()
     assert out == "[ディー] カイダーディー\n"
 
@@ -260,9 +263,15 @@ def test_stdout_unicode_end_parameter(capsys):
         msg = u"カイダーディー"
     else:
         msg = "カイダーディー"
-    stdout(msg, end="==ディー==")
+    if sys.version_info[0] == 2:
+        stdout(msg, end=u"==ディー==")
+    else:
+        stdout(msg, end="==ディー==")
     out, err = capsys.readouterr()
-    assert out == "カイダーディー==ディー=="
+    if sys.version_info[0] == 2:
+        assert out == u"カイダーディー==ディー=="
+    else:
+        assert out == "カイダーディー==ディー=="
 
 
 # statuscode parameter tests
