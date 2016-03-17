@@ -241,7 +241,10 @@ def test_stdout_unicode_begin_parameter(capsys):
     else:
         stdout(msg, begin="[ディー] ")
     out, err = capsys.readouterr()
-    assert out == "[ディー] カイダーディー\n"
+    if sys.version_info[0] == 2:
+        assert out == u"[ディー] カイダーディー\n"
+    else:
+        assert out == "[ディー] カイダーディー\n"
 
 
 # end parameter tests
