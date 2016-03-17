@@ -331,3 +331,19 @@ def test_stdout_unicode_reports_correct_statuscode(capsys):
 def test_stdout_bad_object_as_statuscode():
     with pytest.raises(NameError):
         stdout("This is a test message", statuscode=bogusobj)
+
+
+def test_stdout_ascii_flush_set_to_false(capsys):
+    stdout("This is a test message", flush=False)
+    out, err = capsys.readouterr()
+    assert out == "This is a test message\n"
+
+
+def test_stdout_unicode_flush_set_to_false(capsys):
+    if sys.version_info[0] == 2:
+        msg = u"カイダーディー"
+    else:
+        msg = "カイダーディー"
+    stdout(msg, flush=False)
+    out, err = capsys.readouterr()
+    assert out == msg + "\n"

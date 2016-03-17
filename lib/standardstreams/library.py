@@ -9,6 +9,7 @@ try:  # pragma: no cover
 except NameError:  # pragma: no cover
     basestring = str
 
+# TODO: binary standard output function
 # TODO: stdout_json: std output formatted as json
 # TODO: format the width in characters
 
@@ -19,7 +20,7 @@ except NameError:  # pragma: no cover
 # ///////////////////////////////////////////
 
 
-def stdout(msg, begin="", end="\n", statuscode=None):
+def stdout(msg, begin="", end="\n", statuscode=None, flush=True):
     """Writes msg string (or __str__ representation of msg object) to the standard output stream with option
     to exit program if the statuscode function parameter is defined with an exit status code integer.
 
@@ -30,7 +31,9 @@ def stdout(msg, begin="", end="\n", statuscode=None):
     :param msg: The data to print in the standard output stream. Uses string representation if not a string type
     :param end: (optional) The string to append to the msg string. Default = '\n'
     :param begin: (optional) The string to prepend to the msg string. Default = empty string
-    :param statuscode: (optional) an integer that represents the exit status code."""
+    :param statuscode: (optional) an integer that represents the exit status code.
+    :param flush: (optional) boolean that indicates whether the buffered standard output stream should be flushed
+    following execution of the stdout() function.  Default = True"""
 
     # Parameter type tests
     # (Note: basestring redefined to str for Py3 in module head)
@@ -49,6 +52,9 @@ def stdout(msg, begin="", end="\n", statuscode=None):
 
     # Write to standard output stream
     sys.stdout.write(begin + msg + end)
+
+    if flush is True:
+        sys.stdout.flush()
 
     # Handle request to raise SystemExit at the end of the standard output write
     if statuscode is not None:
