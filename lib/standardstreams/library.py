@@ -5,9 +5,9 @@ import sys
 
 # Define basestring in Python version independent manner for string tests
 try:  # pragma: no cover
-  basestring
+    basestring
 except NameError:  # pragma: no cover
-  basestring = str
+    basestring = str
 
 # TODO: stdout_json: std output formatted as json
 # TODO: format the width in characters
