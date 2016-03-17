@@ -216,6 +216,58 @@ def test_stdout_unicode(capsys):
     assert out == msg + "\n"
 
 
+# ////////////////////////////////////////////////
+#
+# stdout() function tests with defined parameters
+#
+# ////////////////////////////////////////////////
+
+
+# begin parameter tests
+
+def test_stdout_ascii_begin_parameter(capsys):
+    stdout("This is a test message", begin="[test] ")
+    out, err = capsys.readouterr()
+    assert out == "[test] This is a test message\n"
+
+
+def test_stdout_unicode_begin_parameter(capsys):
+    if sys.version_info[0] == 2:
+        msg = u"カイダーディー"
+    else:
+        msg = "カイダーディー"
+    stdout(msg, begin="[ディー] ")
+    out, err = capsys.readouterr()
+    assert out == "[ディー] カイダーディー\n"
+
+
+# end parameter tests
+
+def test_stdout_ascii_end_parameter_emptystring(capsys):
+    stdout("This is a test message", end="")
+    out, err = capsys.readouterr()
+    assert out == "This is a test message"
+
+
+def test_stdout_ascii_end_parameter(capsys):
+    stdout("This is a test message", end="===>")
+    out, err = capsys.readouterr()
+    assert out == "This is a test message===>"
+
+
+def test_stdout_unicode_end_parameter(capsys):
+    if sys.version_info[0] == 2:
+        msg = u"カイダーディー"
+    else:
+        msg = "カイダーディー"
+    stdout(msg, end="==ディー==")
+    out, err = capsys.readouterr()
+    assert out == "カイダーディー==ディー=="
+
+
+# statuscode parameter tests
+
+
 def test_stdout_ascii_reports_correct_statuscode_one(capsys):
     with pytest.raises(SystemExit):
         try:
@@ -267,7 +319,3 @@ def test_stdout_unicode_reports_correct_statuscode(capsys):
 def test_stdout_bad_object_as_statuscode():
     with pytest.raises(NameError):
         stdout("This is a test message", statuscode=bogusobj)
-
-
-
-
