@@ -181,6 +181,11 @@ def test_stdout_end_parameter_test_false_unicode(capsys):
         assert out == msg + end_str
 
 
+def test_stdout_statuscode_parameter_false():
+    with pytest.raises(TypeError):
+        stdout("test string", statuscode="bad code")
+
+
 # ////////////////////////////////////////////////
 #
 # stdout() function tests with default parameters
