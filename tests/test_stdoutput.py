@@ -47,10 +47,6 @@ class BogusWithBoth(object):
         return "__repr__ success"
 
 
-def test_fake_fail():
-    raise NameError()
-
-
 # ///////////////////////////////////////////////////////
 #
 # pytest capsys capture tests
